@@ -1,0 +1,14 @@
+/Users/jinphou/Projects/SportApi/bin/Debug/netcoreapp2.2/SportApi.deps.json
+/Users/jinphou/Projects/SportApi/bin/Debug/netcoreapp2.2/SportApi.runtimeconfig.json
+/Users/jinphou/Projects/SportApi/bin/Debug/netcoreapp2.2/SportApi.runtimeconfig.dev.json
+/Users/jinphou/Projects/SportApi/bin/Debug/netcoreapp2.2/SportApi.dll
+/Users/jinphou/Projects/SportApi/bin/Debug/netcoreapp2.2/SportApi.pdb
+/Users/jinphou/Projects/SportApi/obj/Debug/netcoreapp2.2/SportApi.csprojAssemblyReference.cache
+/Users/jinphou/Projects/SportApi/obj/Debug/netcoreapp2.2/SportApi.csproj.CoreCompileInputs.cache
+/Users/jinphou/Projects/SportApi/obj/Debug/netcoreapp2.2/SportApi.RazorAssemblyInfo.cache
+/Users/jinphou/Projects/SportApi/obj/Debug/netcoreapp2.2/SportApi.RazorAssemblyInfo.cs
+/Users/jinphou/Projects/SportApi/obj/Debug/netcoreapp2.2/SportApi.AssemblyInfoInputs.cache
+/Users/jinphou/Projects/SportApi/obj/Debug/netcoreapp2.2/SportApi.AssemblyInfo.cs
+/Users/jinphou/Projects/SportApi/obj/Debug/netcoreapp2.2/SportApi.RazorTargetAssemblyInfo.cache
+/Users/jinphou/Projects/SportApi/obj/Debug/netcoreapp2.2/SportApi.dll
+/Users/jinphou/Projects/SportApi/obj/Debug/netcoreapp2.2/SportApi.pdb
