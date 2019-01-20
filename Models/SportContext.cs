@@ -14,5 +14,10 @@ namespace SportApi.Models
         public DbSet<Game> Games { get; set; }
         public DbSet<GameState> GameStates { get; set; }
         public DbSet<PlayerStat> PlayerStats { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            
+        }
     }
 }

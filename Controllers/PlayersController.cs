@@ -16,50 +16,86 @@ namespace SportApi.Controllers {
         }
 
         // GET: api/Players
+        /**
+         * return all players' info
+         */
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Player>>> GetPlayers () {
-            // var users = await _context.Users
-            //     .Include(u => u.Posts)
-            //     .ToArrayAsync();
- 
-            // var response = users.Select(u => new
-            // {
-            //     firstName = u.FirstName,
-            //     lastName = u.LastName,
-            //     posts = u.Posts.Select(p => p.Content)
-            // });
- 
-            // return Ok(response);
-            return await _context.Players.ToListAsync ();
+        public async Task<ActionResult<IEnumerable<Player>>> GetPlayers (string date) {
+            if (string.IsNullOrEmpty(date)) {
+                var players = await _context.Players
+                    .Include(u => u.team)
+                    .ToArrayAsync();
+    
+                var response = players.Select(u => new
+                {
+                    id = u.id,
+                    name = u.name,
+                    team_name = u.team.name
+                });
+    
+                return Ok(response);
+            } else {
+                var playerStats = await _context.PlayerStats
+                    .Include(ps => ps.game)
+                    .Include(ps => ps.player)
+                    .Where(ps => ps.game.date.ToString("MMddyyyy") == date)
+                    .Select(p => new {
+                        id = p.player.id,
+                        name = p.player.name,
+                        team_name = p.team.name,
+                        datetime = p.game.date,
+                    })
+                    .Distinct()
+                    .ToArrayAsync();
+    
+                return Ok(playerStats);
+            }
         }
 
-        // GET: api/players/{id}
+        /**
+        GET: api/players/{id}
+        Get player info
+         */
         [HttpGet ("{id}")]
         public async Task<ActionResult<Player>> GetTeam (int id) {
-            var player = await _context.Players.FindAsync (id);
+            var player = await _context.Players
+                .FindAsync (id);
 
             if (player == null) {
                 return NotFound ();
             }
 
-            return player;
+            return Ok(player);
         }
 
+        /**
+        get a player's all game stats
+         */
         [HttpGet ("{id}/stats")]
-        public async Task<ActionResult<IEnumerable<Player>>> GetPlayerStat () {
-            // var users = await _context.Users
-            //     .Include(u => u.Posts)
-            //     .ToArrayAsync();
+        public async Task<ActionResult<IEnumerable<Player>>> GetPlayerStat (int id) {
+            var player = await _context.Players
+                .Include(p => p.playerStats)
+                .Select(p => new {
+                    id = p.id,
+                    name = p.name,
+                    team = p.team.name,
+                    player_stats = p.playerStats.Select(ps => new {
+                        id = ps.id,
+                        points = ps.points,
+                        assists = ps.assists,
+                        rebounds = ps.rebounds,
+                        nerd = ps.nerd
+                    })
+                })
+                .FirstOrDefaultAsync(i => i.id == id);
+
+            if (player == null) {
+                return NotFound ();
+            }
  
-            // var response = users.Select(u => new
-            // {
-            //     firstName = u.FirstName,
-            //     lastName = u.LastName,
-            //     posts = u.Posts.Select(p => p.Content)
-            // });
- 
-            // return Ok(response);
-            return await _context.Players.ToListAsync ();
+            return Ok(player);
         }
     }
+
+
 }

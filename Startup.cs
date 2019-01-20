@@ -89,8 +89,8 @@ namespace SportApi
                             }
                         } else if (s == "Game State:") {
                             while ((s = sr.ReadLine()) != "") {
-                                PlayerStat ps = JsonConvert.DeserializeObject<PlayerStat>(s.TrimEnd(','));
-                                context.PlayerStats.Add(ps);
+                                GameState gs = JsonConvert.DeserializeObject<GameState>(s.TrimEnd(','));
+                                context.GameStates.Add(gs);
                             }
                         }
                     }

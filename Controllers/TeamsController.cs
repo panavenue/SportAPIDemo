@@ -15,25 +15,13 @@ namespace SportApi.Controllers {
             _context = context;
         }
 
-        // GET: api/Team
+        // GET: api/teams
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Team>>> GetTeams () {
-            // var users = await _context.Users
-            //     .Include(u => u.Posts)
-            //     .ToArrayAsync();
- 
-            // var response = users.Select(u => new
-            // {
-            //     firstName = u.FirstName,
-            //     lastName = u.LastName,
-            //     posts = u.Posts.Select(p => p.Content)
-            // });
- 
-            // return Ok(response);
             return await _context.Teams.ToListAsync ();
         }
 
-        // GET: api/Team/{id}
+        // GET: api/teams/{id}
         [HttpGet ("{id}")]
         public async Task<ActionResult<Team>> GetTeam (int id) {
             var team = await _context.Teams.FindAsync (id);
